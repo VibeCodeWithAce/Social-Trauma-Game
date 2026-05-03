@@ -7,21 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="orientation-warning">
-        <p>Please rotate your device to landscape mode</p>
-    </div>
     <canvas id="gameCanvas"></canvas>
 
-    <!-- Touch Controls -->
+    <!-- Touch Controls (fight screen) -->
     <div id="touch-controls">
-        <div id="dpad">
-            <button class="dpad-btn" data-dir="left">&#9664;</button>
-            <button class="dpad-btn" data-dir="right">&#9654;</button>
-        </div>
-        <div id="action-buttons">
-            <button class="action-btn" data-action="shoot">FIRE</button>
-        </div>
+        <button id="touch-left" class="touch-btn touch-dir" data-dir="left">&#9664;</button>
+        <button id="touch-right" class="touch-btn touch-dir" data-dir="right">&#9654;</button>
+        <button id="touch-fire" class="touch-btn touch-action" data-action="shoot">FIRE</button>
     </div>
+
+    <!-- Touch tap zone for menus (title, select, victory) -->
+    <div id="touch-menu"></div>
 
     <script src="src/state.js"></script>
     <script src="src/input.js"></script>

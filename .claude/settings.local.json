@@ -11,7 +11,8 @@
       "Bash(node -c src/input.js)",
       "Bash(node -c src/main.js)",
       "Bash(node -c C:/Users/HP/socialtrauma/src/game.js)",
-      "Bash(node -c C:/Users/HP/socialtrauma/src/sound.js)"
+      "Bash(node -c C:/Users/HP/socialtrauma/src/sound.js)",
+      "Bash(node -c src/sound.js)"
     ]
   }
 }

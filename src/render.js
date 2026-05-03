@@ -70,7 +70,7 @@ const Render = {
             ctx.fillStyle = '#888';
             ctx.font = '18px monospace';
             ctx.textAlign = 'center';
-            ctx.fillText('PRESS ENTER TO START', this.W / 2, 320);
+            ctx.fillText(Input.isTouch ? 'TAP TO START' : 'PRESS ENTER TO START', this.W / 2, 320);
         }
 
         // Version
@@ -149,7 +149,14 @@ const Render = {
         ctx.fillStyle = btnBlink ? '#ff3333' : '#cc0000';
         ctx.font = 'bold 16px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText('[ ENTER TO FIGHT ]', statsX, statsY + 50);
+        ctx.fillText(Input.isTouch ? '[ TAP TO FIGHT ]' : '[ ENTER TO FIGHT ]', statsX, statsY + 50);
+
+        // Swipe hint on touch
+        if (Input.isTouch) {
+            ctx.fillStyle = '#555';
+            ctx.font = '11px monospace';
+            ctx.fillText('SWIPE TO SELECT', statsX, statsY + 68);
+        }
 
         this._drawScanlines(0.02);
     },
@@ -390,7 +397,7 @@ const Render = {
         if (blink) {
             ctx.fillStyle = '#888';
             ctx.font = '14px monospace';
-            ctx.fillText('PRESS ENTER TO CONTINUE', this.W / 2, this.H / 2 + 60);
+            ctx.fillText(Input.isTouch ? 'TAP TO CONTINUE' : 'PRESS ENTER TO CONTINUE', this.W / 2, this.H / 2 + 60);
         }
     },
 
@@ -451,7 +458,7 @@ const Render = {
         if (blink) {
             ctx.fillStyle = '#666';
             ctx.font = '16px monospace';
-            ctx.fillText('PRESS ENTER TO CONTINUE', this.W / 2, this.H / 2 + 130);
+            ctx.fillText(Input.isTouch ? 'TAP TO CONTINUE' : 'PRESS ENTER TO CONTINUE', this.W / 2, this.H / 2 + 130);
         }
 
         this._drawScanlines(0.03);

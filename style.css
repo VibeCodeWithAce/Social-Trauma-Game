@@ -23,80 +23,70 @@ html, body {
     image-rendering: pixelated;
 }
 
-/* Orientation warning */
-#orientation-warning {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: #000;
-    color: #ff3333;
-    font-family: monospace;
-    font-size: 24px;
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Touch controls */
+/* ── Touch controls (fight screen) ── */
 #touch-controls {
     display: none;
     position: fixed;
     bottom: 0; left: 0;
-    width: 100%; height: 100px;
+    width: 100%; height: 100%;
     pointer-events: none;
     z-index: 100;
 }
 
-#dpad {
+.touch-btn {
     position: absolute;
-    left: 20px;
-    bottom: 10px;
-    width: 130px;
-    height: 50px;
-    pointer-events: auto;
-    display: flex;
-    gap: 8px;
-}
-
-.dpad-btn {
-    width: 56px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    color: #fff;
-    font-size: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     pointer-events: auto;
     touch-action: none;
-}
-
-#action-buttons {
-    position: absolute;
-    right: 20px;
-    bottom: 10px;
-    pointer-events: auto;
-}
-
-.action-btn {
-    width: 70px;
-    height: 50px;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 100, 100, 0.5);
-    background: rgba(255, 50, 50, 0.35);
+    border: none;
+    outline: none;
     color: #fff;
     font-family: monospace;
-    font-size: 14px;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    pointer-events: auto;
-    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Left button — bottom-left */
+#touch-left {
+    left: 10px;
+    bottom: 12px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    font-size: 28px;
+}
+
+/* Right button — next to left */
+#touch-right {
+    left: 94px;
+    bottom: 12px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    font-size: 28px;
+}
+
+/* Fire button — bottom-right, big */
+#touch-fire {
+    right: 12px;
+    bottom: 12px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255, 50, 50, 0.3);
+    border: 3px solid rgba(255, 80, 80, 0.5);
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.touch-btn:active {
+    opacity: 0.7;
 }
 
 /* Show touch controls on touch devices during fight */
@@ -104,12 +94,22 @@ body.touch-enabled.state-fight #touch-controls {
     display: block;
 }
 
-/* Portrait orientation warning on mobile */
-@media (orientation: portrait) and (max-width: 900px) {
-    #orientation-warning {
-        display: flex !important;
-    }
-    #gameCanvas, #touch-controls {
-        display: none !important;
-    }
+/* ── Touch menu overlay (tap to confirm on non-fight screens) ── */
+#touch-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 90;
+}
+
+body.touch-enabled.state-title #touch-menu,
+body.touch-enabled.state-select #touch-menu,
+body.touch-enabled.state-victory #touch-menu {
+    display: block;
+}
+
+/* Hide menu overlay during fight */
+body.state-fight #touch-menu {
+    display: none !important;
 }
