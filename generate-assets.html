@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head><title>Asset Generator</title></head>
+<body>
+<h2>Right-click each image and "Save Image As" to the correct folder, or just run the game — it works with colored rectangles as fallback.</h2>
+<p>Portraits go in assets/portraits/, Sprites go in assets/sprites/</p>
+<div id="output"></div>
+<script>
+const fighters = [
+    { name: 'ghosted', color: '#6ec6ff', accent: '#3a8fd4' },
+    { name: 'gaslighter', color: '#ff6b6b', accent: '#cc3333' },
+    { name: 'overthinker', color: '#c084fc', accent: '#8b5cf6' },
+    { name: 'lovebomber', color: '#fb7185', accent: '#e11d48' },
+    { name: 'breadcrumber', color: '#fbbf24', accent: '#d97706' },
+    { name: 'stonewaller', color: '#94a3b8', accent: '#64748b' }
+];
+
+const out = document.getElementById('output');
+
+fighters.forEach(f => {
+    // Portrait (120x120)
+    const pc = document.createElement('canvas');
+    pc.width = 120; pc.height = 120;
+    const pctx = pc.getContext('2d');
+
+    // Background
+    pctx.fillStyle = '#111';
+    pctx.fillRect(0, 0, 120, 120);
+
+    // Face circle
+    pctx.fillStyle = f.color;
+    pctx.beginPath();
+    pctx.arc(60, 50, 35, 0, Math.PI * 2);
+    pctx.fill();
+
+    // Eyes
+    pctx.fillStyle = '#000';
+    pctx.fillRect(47, 44, 8, 10);
+    pctx.fillRect(65, 44, 8, 10);
+
+    // Mouth
+    pctx.strokeStyle = '#000';
+    pctx.lineWidth = 2;
+    pctx.beginPath();
+    pctx.arc(60, 60, 12, 0.1 * Math.PI, 0.9 * Math.PI);
+    pctx.stroke();
+
+    // Body hint
+    pctx.fillStyle = f.accent;
+    pctx.fillRect(35, 85, 50, 35);
+
+    // Name
+    pctx.fillStyle = '#fff';
+    pctx.font = 'bold 10px monospace';
+    pctx.textAlign = 'center';
+    pctx.fillText(f.name.toUpperCase(), 60, 115);
+
+    out.innerHTML += `<div><strong>portraits/${f.name}.png</strong><br>`;
+    out.appendChild(pc);
+    out.innerHTML += `</div><br>`;
+
+    // Sprite (60x100)
+    const sc = document.createElement('canvas');
+    sc.width = 60; sc.height = 100;
+    const sctx = sc.getContext('2d');
+
+    // Head
+    sctx.fillStyle = f.color;
+    sctx.beginPath();
+    sctx.arc(30, 20, 16, 0, Math.PI * 2);
+    sctx.fill();
+
+    // Eyes
+    sctx.fillStyle = '#000';
+    sctx.fillRect(23, 17, 5, 6);
+    sctx.fillRect(32, 17, 5, 6);
+
+    // Body
+    sctx.fillStyle = f.accent;
+    sctx.fillRect(15, 36, 30, 35);
+
+    // Arms
+    sctx.fillStyle = f.color;
+    sctx.fillRect(5, 38, 10, 28);
+    sctx.fillRect(45, 38, 10, 28);
+
+    // Legs
+    sctx.fillStyle = f.accent;
+    sctx.fillRect(18, 71, 10, 29);
+    sctx.fillRect(32, 71, 10, 29);
+
+    out.innerHTML += `<div><strong>sprites/${f.name}.png</strong><br>`;
+    out.appendChild(sc);
+    out.innerHTML += `</div><br>`;
+
+    // Auto-download
+    pc.toBlob(blob => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = f.name + '.png';
+        // Uncomment next line to auto-download portraits:
+        // a.click();
+    });
+    sc.toBlob(blob => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = f.name + '.png';
+        // Uncomment next line to auto-download sprites:
+        // a.click();
+    });
+});
+</script>
+</body>
+</html>

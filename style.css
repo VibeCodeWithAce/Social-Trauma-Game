@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameCanvas {
+    display: block;
+    background: #111;
+    image-rendering: pixelated;
+}
+
+/* Orientation warning */
+#orientation-warning {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    color: #ff3333;
+    font-family: monospace;
+    font-size: 24px;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Touch controls */
+#touch-controls {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%; height: 100px;
+    pointer-events: none;
+    z-index: 100;
+}
+
+#dpad {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    width: 130px;
+    height: 50px;
+    pointer-events: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.dpad-btn {
+    width: 56px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+    touch-action: none;
+}
+
+#action-buttons {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    pointer-events: auto;
+}
+
+.action-btn {
+    width: 70px;
+    height: 50px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 100, 100, 0.5);
+    background: rgba(255, 50, 50, 0.35);
+    color: #fff;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+    touch-action: none;
+}
+
+/* Show touch controls on touch devices during fight */
+body.touch-enabled.state-fight #touch-controls {
+    display: block;
+}
+
+/* Portrait orientation warning on mobile */
+@media (orientation: portrait) and (max-width: 900px) {
+    #orientation-warning {
+        display: flex !important;
+    }
+    #gameCanvas, #touch-controls {
+        display: none !important;
+    }
+}

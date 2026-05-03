@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -c src/render.js)",
+      "Bash(node -c src/game.js)",
+      "Bash(node -c src/fighters.js)",
+      "Bash(node -c C:/Users/HP/socialtrauma/src/state.js)",
+      "Bash(node -c C:/Users/HP/socialtrauma/src/input.js)",
+      "Bash(node -c C:/Users/HP/socialtrauma/src/main.js)",
+      "Bash(node -c src/state.js)",
+      "Bash(node -c src/input.js)",
+      "Bash(node -c src/main.js)",
+      "Bash(node -c C:/Users/HP/socialtrauma/src/game.js)",
+      "Bash(node -c C:/Users/HP/socialtrauma/src/sound.js)"
+    ]
+  }
+}
